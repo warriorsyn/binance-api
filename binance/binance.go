@@ -82,15 +82,13 @@ func handleNotification(symbol string, currentPrice float64, convertedLastPrice 
 		formatToMoney(convertedLastPrice, "R$"),
 		formatToMoney(convertedLastPrice-currentPrice, "R$"))
 	postBody, _ := json.Marshal(map[string][]map[string]string{
-		"embeds": []map[string]string{
+		"embeds": {
 			{
 				"title":       symbol,
 				"description": message,
 			},
 		},
 	})
-	//var fullString = fmt.Sprintf(`{"content":"%s"}`, message)
-	//var jsonStr = []byte(fullString)
 
 	discordWebhook := os.Getenv("DISCORD_WEBHOOK")
 
